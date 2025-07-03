@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Haruto Yamane's Portfolio";
 export const SITE_DESCRIPTION = '山根 晴斗のポートフォリオサイトです。';
-export const JOB_TITLE = 'Webエンジニア';
+export const JOB_TITLE = 'Webエンジニア初学者';
