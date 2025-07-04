@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const Max_Score = 5;
 
 function calcPercentage(score: number): number {
@@ -37,14 +39,16 @@ type Props = {
   level: number;
   experience: number;
   interest: number;
+  icon: string;
 };
 
-const { name, description, level, experience, interest } = Astro.props;
+const { name, description, level, experience, interest, icon } = Astro.props;
 ---
 
 <div class="skill-card">
   <div class="skill-card-header">
     <div class="skill-icon"></div>
+    <Icon name={icon} width={40} height={40} />
     <h3 class="skill-name">{name}</h3>
   </div>
 
