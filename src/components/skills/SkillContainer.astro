@@ -1,14 +1,160 @@
 ---
 import SkillCard from "./SkillCard.astro";
+
+const skillCategories = [
+  {
+    name: "フロントエンド",
+    skills: [
+      {
+        name: "HTML",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:html",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+      {
+        name: "CSS",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:html",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+      {
+        name: "JavaScript",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:html",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+      {
+        name: "Astro",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:html",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+    ],
+  },
+  {
+    name: "バックエンド",
+    skills: [
+      {
+        name: "Node.js",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:nodejs-dark",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+      {
+        name: "Express",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:expressjs-dark",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+    ],
+  },
+  {
+    name: "データベース",
+    skills: [
+      {
+        name: "MySQL",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:mysql-dark",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+      {
+        name: "PostgreSQL",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:postgresql-dark",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+    ],
+  },
+  {
+    name: "DevOps,インフラ",
+    skills: [
+      {
+        name: "GitHub",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:github-dark",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+      {
+        name: "Google Cloud",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:github-dark",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+      {
+        name: "Docker",
+        description: "初学者です。まだ何もできません。",
+        icon: "skill-icons:github-dark",
+        experience: 1,
+        level: 1,
+        interest: 4,
+      },
+    ],
+  },
+];
 ---
 
-<div class="skill-card">
-  <SkillCard
-    name="HTML"
-    description="HTML"
-    icon="skill-icons:html"
-    experience={3}
-    level={6}
-    interest={4}
-  />
+<div class="skill-container">
+  {
+    skillCategories.map((category) => (
+      <section class="skill-category">
+        <h2 class="category-title">{category.name}</h2>
+        <div class="skill-grid">
+          {category.skills.map((skill, index) => (
+            <div
+              class="skill-card-wrapper"
+              style={`--animation-order: ${index}`}
+            >
+              <SkillCard {...skill} />
+            </div>
+          ))}
+        </div>
+      </section>
+    ))
+  }
 </div>
+
+<style>
+  .skill-container {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .skill-category {
+    background: var(--gradient-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+</style>
