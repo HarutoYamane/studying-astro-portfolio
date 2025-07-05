@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { SITE_TITLE, SITE_DESCRIPTION, JOB_TITLE } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION, JOB_TITLE, BASE_URL } from "../consts";
 import Timeline from "../components/about/Timeline.astro";
 
 const myName = "山根 晴斗 - Yamane Haruto";
@@ -12,7 +12,7 @@ const myName = "山根 晴斗 - Yamane Haruto";
 
     <div class="profile">
       <img
-        src="../src/assets/DQX profile.jpeg"
+        src={`${BASE_URL}/src/assets/DQX profile.jpeg`}
         alt="山根 晴斗"
         class="profile-image"
       />

@@ -1,11 +1,11 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import { SITE_TITLE } from "../consts";
+import { SITE_TITLE, BASE_URL } from "../consts";
 ---
 
 <header>
   <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
+    <h2><a href={`${BASE_URL}/`}>{SITE_TITLE}</a></h2>
 
     <div id="menu-content">
       <button id="close-menu-button" aria-label="メニューを閉じる">
@@ -19,10 +19,10 @@ import { SITE_TITLE } from "../consts";
       </button>
 
       <ul class="internal-links">
-        <li><HeaderLink href="/">Home</HeaderLink></li>
-        <li><HeaderLink href="/about">About</HeaderLink></li>
-        <li><HeaderLink href="/skills">Skills</HeaderLink></li>
-        <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+        <li><HeaderLink href={`${BASE_URL}/`}>Home</HeaderLink></li>
+        <li><HeaderLink href={`${BASE_URL}/about`}>About</HeaderLink></li>
+        <li><HeaderLink href={`${BASE_URL}/skills`}>Skills</HeaderLink></li>
+        <li><HeaderLink href={`${BASE_URL}/blog`}>Blog</HeaderLink></li>
       </ul>
 
       <div class="social-links">
@@ -76,208 +76,208 @@ import { SITE_TITLE } from "../consts";
   </nav>
 
   <div id="overlay"></div>
-</header>
 
-<style>
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color);
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
-  }
-
-  nav {
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  nav h2,
-  nav a {
-    font-size: 1rem;
-    color: var(--text-color);
-    text-decoration: none;
-    margin: 0;
-  }
-
-  .internal-links {
-    display: flex;
-    gap: 3rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  /* 　START justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 */
-  nav {
-    position: relative;
-  }
-
-  .internal-links {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  /* 　END justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 */
-
-  .social-links {
-    display: flex;
-    height: 32px;
-    gap: 1rem;
-  }
-
-  #menu-button-container {
-    display: none;
-  }
-  /* スマートフォン用（720px以下） */
-  @media (max-width: 720px) {
-    nav {
-      padding: 1rem;
-    }
-    #menu-button-container {
-      display: block;
-    }
-
-    #open-menu-button {
-      display: flex;
-      align-items: center;
-      background-color: var(--card-bg-color);
-      color: var(--text-color);
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    #menu-content,
-    #open-menu-button {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(0, 0, 0, 0.2);
-    }
-
-    .menu-icon {
-      margin-left: 0.75rem;
-      height: auto;
-      width: 0.5rem;
-      stroke: var(--text-color);
-    }
-
-    #menu-content {
-      display: block;
-      opacity: 0;
-      visibility: hidden;
-      position: fixed;
-      top: 4.5rem;
-      left: 1rem;
-      right: 1rem;
-      background-color: var(--card-bg-color);
-      border-radius: 2rem;
-      padding: 3.5rem 1rem 2rem;
-      z-index: 1000;
-      /* アニメーション　 */
-      transform: translateY(-10px);
-      transition:
-        opacity 0.2s ease-in-out,
-        visibility 0.2s ease-in-out;
-      transform: 0.2s ease-in-out;
-    }
-
-    #menu-content.open {
-      opacity: 1;
-      visibility: visible;
-      /* アニメーション　 */
-      transform: translateY(0);
-    }
-
-    #close-menu-button {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-
-    .internal-links {
-      /* 　justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 の解除 */
-      position: static;
-      transform: none;
-      /* 　justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 の解除 */
-      justify-content: center;
-      gap: 2.5rem;
-    }
-
-    .social-links {
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    #overlay {
-      display: none;
+  <style>
+    header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-      z-index: 999;
+      z-index: 1000;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      box-shadow: 0 2px 8px rgba(var(--black), 5%);
     }
 
-    #overlay.open {
-      display: block;
+    nav {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-  }
 
-  /* パソコン用（720px以上） */
-  @media not (max-width: 720px) {
-    #menu-button-container,
-    #close-menu-button,
-    #overlay.open {
+    nav h2,
+    nav a {
+      font-size: 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      margin: 0;
+    }
+
+    .internal-links {
+      display: flex;
+      gap: 3rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    /* 　START justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 */
+    nav {
+      position: relative;
+    }
+
+    .internal-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    /* 　END justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 */
+
+    .social-links {
+      display: flex;
+      height: 32px;
+      gap: 1rem;
+    }
+
+    #menu-button-container {
       display: none;
     }
-  }
-</style>
+    /* スマートフォン用（720px以下） */
+    @media (max-width: 720px) {
+      nav {
+        padding: 1rem;
+      }
+      #menu-button-container {
+        display: block;
+      }
 
-<script>
-  const menuButton = document.getElementById("open-menu-button");
-  const menuContent = document.getElementById("menu-content");
-  const closeMenuButton = document.getElementById("close-menu-button");
-  const overlay = document.getElementById("overlay");
+      #open-menu-button {
+        display: flex;
+        align-items: center;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
 
-  function openMenu() {
-    if (!menuContent || !overlay) return;
-    menuContent.classList.add("open");
-    overlay.classList.add("open");
-  }
+      #menu-content,
+      #open-menu-button {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
 
-  function closeMenu() {
-    if (!menuContent || !overlay) return;
-    menuContent.classList.remove("open");
-    overlay.classList.remove("open");
-  }
+      .menu-icon {
+        margin-left: 0.75rem;
+        height: auto;
+        width: 0.5rem;
+        stroke: var(--text-color);
+      }
 
-  if (menuButton && menuContent && closeMenuButton) {
-    menuButton.addEventListener("click", openMenu);
-    closeMenuButton.addEventListener("click", closeMenu);
+      #menu-content {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        top: 4.5rem;
+        left: 1rem;
+        right: 1rem;
+        background-color: var(--card-bg-color);
+        border-radius: 2rem;
+        padding: 3.5rem 1rem 2rem;
+        z-index: 1000;
+        /* アニメーション　 */
+        transform: translateY(-10px);
+        transition:
+          opacity 0.2s ease-in-out,
+          visibility 0.2s ease-in-out;
+        transform: 0.2s ease-in-out;
+      }
 
-    document.addEventListener("click", (event) => {
-      // as Node は TypeScript の型アサーション
-      const target = event.target as Node;
-      // クリックされた要素が menuContent か menuButton の子孫ではない場合は閉じる
-      if (!menuContent.contains(target) && !menuButton.contains(target))
-        closeMenu();
-    });
-  }
-</script>
+      #menu-content.open {
+        opacity: 1;
+        visibility: visible;
+        /* アニメーション　 */
+        transform: translateY(0);
+      }
+
+      #close-menu-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-color);
+      }
+
+      .internal-links {
+        /* 　justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 の解除 */
+        position: static;
+        transform: none;
+        /* 　justify-content: space-between で少し中央からズレるのを、中央に持ってくる処理 の解除 */
+        justify-content: center;
+        gap: 2.5rem;
+      }
+
+      .social-links {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        z-index: 999;
+      }
+
+      #overlay.open {
+        display: block;
+      }
+    }
+
+    /* パソコン用（720px以上） */
+    @media not (max-width: 720px) {
+      #menu-button-container,
+      #close-menu-button,
+      #overlay.open {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    const menuButton = document.getElementById("open-menu-button");
+    const menuContent = document.getElementById("menu-content");
+    const closeMenuButton = document.getElementById("close-menu-button");
+    const overlay = document.getElementById("overlay");
+
+    function openMenu() {
+      if (!menuContent || !overlay) return;
+      menuContent.classList.add("open");
+      overlay.classList.add("open");
+    }
+
+    function closeMenu() {
+      if (!menuContent || !overlay) return;
+      menuContent.classList.remove("open");
+      overlay.classList.remove("open");
+    }
+
+    if (menuButton && menuContent && closeMenuButton) {
+      menuButton.addEventListener("click", openMenu);
+      closeMenuButton.addEventListener("click", closeMenu);
+
+      document.addEventListener("click", (event) => {
+        // as Node は TypeScript の型アサーション
+        const target = event.target as Node;
+        // クリックされた要素が menuContent か menuButton の子孫ではない場合は閉じる
+        if (!menuContent.contains(target) && !menuButton.contains(target))
+          closeMenu();
+      });
+    }
+  </script>
+</header>
